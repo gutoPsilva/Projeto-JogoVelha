@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TicTacToe Game</title>
+  <link rel="shortcut icon" href="images/faviconJS.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <header>
+    <h1>TicTacToe Game</h1>
+  </header>
+  <main>
+
+    <div class="menu">
+      <button class="js-start-button">Start</button>
+      <button class="js-score-button">Show scores</button>
+      <a href="https://github.com/gutoPsilva" rel="external" target="_blank"><button>My GitHub :]</button></a>
+    </div>
+
+    <div class="grid-container">
+      <div class="buttons">
+        <button class="js-return-button">Return</button>
+        <button class="js-restart-button">Restart</button>
+      </div>
+
+      <div class="grid">
+        <button class="block" id="0"></button>
+        <button class="block" id="1"></button>
+        <button class="block" id="2"></button>
+        <button class="block" id="3"></button>
+        <button class="block" id="4"></button>
+        <button class="block" id="5"></button>
+        <button class="block" id="6"></button>
+        <button class="block" id="7"></button>
+        <button class="block" id="8"></button>
+      </div>
+    </div>
+
+    <div class="score-container">
+      <button class="js-return-button">Return</button>
+      <button class="js-remove-scores-button">Restart scores</button>
+
+      <h2>Score list</h2>
+
+      <div class="score-list">
+        <p class="items"> Times Player X won:
+          <span id="xWins">1</span>
+        </p>
+        <p class="items"> Times Player O won: 
+          <span id="oWins">1</span>
+        </p>
+        <p class="items"> Ties:
+          <span id="ties">1</span>
+        </p>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
