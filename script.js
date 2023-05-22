@@ -27,6 +27,19 @@ restartButton.addEventListener('click', () => {
   console.log(scores);
 });
 
+const restartScoreButton = document.querySelector('.js-remove-scores-button');
+restartScoreButton.addEventListener('click', () => {
+  const msg = confirm("Are you sure you want to reset the score?");
+  if(msg){
+    scores.oWins = 0;
+    scores.xWins = 0;
+    scores.ties = 0;
+    saveScore();
+    updateDisplayScores();
+    console.log(scores);
+  }
+});
+
 const returnButton = document.querySelectorAll(".js-return-button");
 returnButton.forEach(button => {
   button.addEventListener("click", () => {
@@ -47,6 +60,7 @@ function startGame(action) {
   if(action === 'play'){
     document.querySelector(".grid-container").style.display = 'block';
   }else{
+    updateDisplayScores();
     document.querySelector(".score-container").style.display = 'block';
   }
 }
@@ -78,11 +92,6 @@ const playerHasWon = () => {
   return false;
 };
 
-const saveScore = () =>{
-  localStorage.setItem('xWins', JSON.stringify(scores.xWins));
-  localStorage.setItem('oWins', JSON.stringify(scores.oWins));
-}
-
 const squareClicked = (square, e) => {
   const id = e.target.id;
 
@@ -104,22 +113,41 @@ const squareClicked = (square, e) => {
         saveScore();
       }
 
+      console.log(scores);
+
       allSquares.forEach(square => {
         square.disabled = true;
         square.style.cursor = 'default';
-      });
-
-      console.log(scores);
-    }else{
-      
+      })
     }
-
     currentPlayer = currentPlayer === symbol_X ? symbol_O : symbol_X;
   }
 };
 
+const numberOfBlocks = [];
+let cont = 0;
 allSquares.forEach(square => {
   square.addEventListener('click', (e) => {
     squareClicked(square, e);
+    numberOfBlocks.push(cont);
+    cont++;
+
+    if(numberOfBlocks.length === 9){
+      scores.ties++;
+      saveScore();
+      console.log(scores);
+    }
   })
 });
+
+function saveScore(){
+  localStorage.setItem('xWins', JSON.stringify(scores.xWins));
+  localStorage.setItem('oWins', JSON.stringify(scores.oWins));
+  localStorage.setItem('ties', JSON.stringify(scores.ties))
+}
+
+function updateDisplayScores() {
+  winsXElement.innerHTML = scores.xWins;
+  winsOElement.innerHTML = scores.oWins;
+  tiesElement.innerHTML = scores.ties;
+}
