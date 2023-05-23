@@ -143,7 +143,7 @@ allSquares.forEach(square => {
 function saveScore(){
   localStorage.setItem('xWins', JSON.stringify(scores.xWins));
   localStorage.setItem('oWins', JSON.stringify(scores.oWins));
-  localStorage.setItem('ties', JSON.stringify(scores.ties))
+  localStorage.setItem('ties', JSON.stringify(scores.ties));
 }
 
 function updateDisplayScores() {

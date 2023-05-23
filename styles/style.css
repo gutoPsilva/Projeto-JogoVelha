@@ -84,6 +84,11 @@ main{
   display: none;
 }
 
+.buttons-container{
+  display: flex;
+  justify-content: space-between;
+}
+
 .score-list{
   display: flex;
   flex-direction: column;
@@ -98,6 +103,10 @@ main{
   justify-content: space-between;
   margin-top: 5px;
   font-size: 20px;
+}
+
+.items > span{
+  padding-left: 50px;
 }
 
 .menu button,
