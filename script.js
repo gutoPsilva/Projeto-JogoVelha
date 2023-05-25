@@ -8,6 +8,18 @@ const winsXElement = document.getElementById("xWins");
 const winsOElement = document.getElementById("oWins");
 const tiesElement = document.getElementById("ties");
 
+const saveScore = () => {
+  localStorage.setItem('xWins', JSON.stringify(scores.xWins));
+  localStorage.setItem('oWins', JSON.stringify(scores.oWins));
+  localStorage.setItem('ties', JSON.stringify(scores.ties));
+};
+
+const updateDisplayScores = () => {
+  winsXElement.innerHTML = scores.xWins;
+  winsOElement.innerHTML = scores.oWins;
+  tiesElement.innerHTML = scores.ties;
+};
+
 const startButton = document.querySelector(".js-start-button");
 startButton.addEventListener("click", () => startGame('play'));
 
@@ -100,8 +112,9 @@ const squareClicked = (square, e) => {
     square.innerText = currentPlayer;
     square.disabled = true;
     square.style.cursor = 'default';
+    square.style.border = 'none';
 
-    if(playerHasWon() !== false){
+    if(playerHasWon()){
       let winning_blocks = playerHasWon();
       winning_blocks.map(square => allSquares[square].style.backgroundColor = 'black');
 
@@ -124,30 +137,14 @@ const squareClicked = (square, e) => {
   }
 };
 
-const numberOfBlocks = [];
-let cont = 0;
 allSquares.forEach(square => {
   square.addEventListener('click', (e) => {
     squareClicked(square, e);
-    numberOfBlocks.push(cont);
-    cont++;
-
-    if(numberOfBlocks.length === 9){
+    if(remainingBlocks.every(element => element!== null && !playerHasWon())){
       scores.ties++;
       saveScore();
-      console.log(scores);
+      updateDisplayScores();
     }
+    console.log(remainingBlocks);
   })
 });
-
-function saveScore(){
-  localStorage.setItem('xWins', JSON.stringify(scores.xWins));
-  localStorage.setItem('oWins', JSON.stringify(scores.oWins));
-  localStorage.setItem('ties', JSON.stringify(scores.ties));
-}
-
-function updateDisplayScores() {
-  winsXElement.innerHTML = scores.xWins;
-  winsOElement.innerHTML = scores.oWins;
-  tiesElement.innerHTML = scores.ties;
-}
