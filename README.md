@@ -1,2 +1,4 @@
 # Projeto JogoVelha
- In Progress
+
+Projeto de Jogo da Velha utilizando HTML, CSS e JS.
+- Acesse em: https://gutopsilva.github.io/Projeto-JogoVelha/index.html
